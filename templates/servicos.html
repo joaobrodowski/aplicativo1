@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Paraíso</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style_servicos.css')}}">
+</head>
+<body>
+  <header>
+    <h1>Hotel Paraíso</h1>
+    <nav>
+      <ul>
+        <li><a href="#quartos">Quartos</a></li>
+        <li><a href="#restaurante">Restaurante</a></li>
+        <li><a href="#spa">Spa</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <h2>Bem-vindo ao Hotel Paraíso</h2>
+    <p>Conforto, luxo e tranquilidade em um só lugar.</p>
+  </section>
+
+  <section id="quartos" class="servico">
+    <h2>Quartos</h2>
+    <p>Oferecemos quartos luxuosos com vista para o mar, ar-condicionado, TV a cabo e Wi-Fi gratuito.</p>
+  </section>
+
+  <section id="restaurante" class="servico">
+    <h2>Restaurante</h2>
+    <p>Gastronomia internacional com os melhores chefs. Café da manhã incluso na diária.</p>
+  </section>
+
+  <section id="spa" class="servico">
+    <h2>Spa</h2>
+    <p>Relaxe em nosso spa com massagens, sauna e tratamentos de beleza.</p>
+  </section>
+
+  <section id="contato" class="contato">
+    <h2>Fale Conosco</h2>
+    <form onsubmit="enviarFormulario(event)">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <textarea placeholder="Sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="mensagem-confirmacao"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Hotel Paraíso. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
