@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #b22f27;
+  --background-gradient-start: #1a1a1a;
+  --background-gradient-end: #3d1e14;
+  --accent-gradient: linear-gradient(135deg, #b22f27, #e07b1e);
+  --input-bg: rgba(255, 255, 255, 0.07);
+  --input-border: rgba(255, 255, 255, 0.25);
+  --input-focus-border: #e07b1e;
+  --text-color: #f1f1f1;
+  --font-family: 'Inter', sans-serif;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: linear-gradient(180deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background-image:
+    url('https://placehold.co/1200x800?text=Witcher%20Sword%20and%20Medallion&font=inter&background=3d1e14&foreground=b22f27'),
+    url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/423ac1b2-da69-40d3-b4d8-6bc07a8aec22.png');
+  background-repeat: no-repeat;
+  background-position: center top, center bottom;
+  background-size: cover, cover;
+  opacity: 0.15;
+  filter: brightness(0.35) saturate(1.2);
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(25, 15, 10, 0.85);
+  padding: 48px 40px 60px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 32px rgba(178, 47, 39, 0.5);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  user-select: none;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-align: center;
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f1f1f1cc;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: var(--border-radius);
+  padding: 14px 20px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+  width: 100%;
+  font-weight: 600;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: #f1f1f1aa;
+  font-weight: 400;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  background: rgba(255 255 255 / 0.12);
+}
+
+button[type="submit"] {
+  background: var(--accent-gradient);
+  border: none;
+  padding: 18px 0;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(224, 123, 30, 0.6);
+  user-select: none;
+}
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  background: #e07b1e;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(224, 123, 30, 0.85);
+  outline: none;
+}
+
+.flash-message {
+  background: #e07b1e;
+  color: #1a1a1a;
+  padding: 12px 20px;
+  border-radius: var(--border-radius);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 0 16px rgba(224, 123, 30, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  main {
+    padding: 36px 24px 48px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}

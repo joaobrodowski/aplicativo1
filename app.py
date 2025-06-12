@@ -1,32 +1,47 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request, render_template, flash, redirect, url_for
 
 app = Flask(__name__)
+app.secret_key = 'sua_chave_secreta'  # Obrigatório para usar flash()
 
-# Dummy user
-USER = {"username": "admin", "password": "1234"}
-
-# Dummy hotel data
-hotels = [
-    {"name": "Hotel Sol", "location": "Rio de Janeiro", "price": "R$250"},
-    {"name": "Hotel Praia Azul", "location": "Florianópolis", "price": "R$300"},
-    {"name": "Hotel Central", "location": "São Paulo", "price": "R$220"}
-]
+registered_users = []  # Armazena os usuários cadastrados em memória
 
 @app.route('/')
-def login():
-    return render_template('login.html')
+def index():
+    return redirect(url_for('cadastro'))
 
-@app.route('/auth', methods=['POST'])
-def auth():
-    username = request.form['username']
-    password = request.form['password']
-    if username == USER["username"] and password == USER["password"]:
-        return redirect(url_for('show_hotels'))
-    return "Usuário ou senha inválidos!", 401
+@app.route('/servicos')
+def servicos():
+    return render_template('servicos.html')
 
-@app.route('/hotels')
-def show_hotels():
-    return render_template('hotels.html', hotels=hotels)
+@app.route('/cadastro', methods=['GET'])
+def cadastro():
+    return render_template('cadastro.html')
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    username = request.form.get('username', '').strip()
+    email = request.form.get('email', '').strip()
+    password = request.form.get('password', '')
+
+    # Validação simples
+    if not username or not email or not password:
+        flash('Por favor, preencha todos os campos obrigatórios.')
+        return redirect(url_for('cadastro'))
+
+    if len(password) < 8:
+        flash('A senha deve conter pelo menos 8 caracteres.')
+        return redirect(url_for('cadastro'))
+
+    # Armazenar usuário (apenas para demonstração — NÃO armazene senhas em texto puro em produção!)
+    user = {
+        'username': username,
+        'email': email,
+        'password': password,
+    }
+    registered_users.append(user)
+
+    flash('Cadastro realizado com sucesso! Bem-vindo ao site de notícias.')
+    return redirect(url_for('servicos'))  # redireciona para /servicos após cadastro
 
 if __name__ == '__main__':
     app.run(debug=True)
